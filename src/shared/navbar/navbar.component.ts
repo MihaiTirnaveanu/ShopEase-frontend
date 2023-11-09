@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
+  emptyAvatarPic = "assets/images/empty-avatar1.webp";
 }
