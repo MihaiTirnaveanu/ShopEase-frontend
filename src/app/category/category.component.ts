@@ -23,8 +23,15 @@ export class CategoryComponent implements OnInit {
     console.log('Edit category:', category);
   }
 
-  delete(categoryId: number) {
-    // Implement the delete functionality, you can show a confirmation dialog and then call the service to delete
-    console.log('Delete category with ID:', categoryId);
-  }
+  delete(categoryId: number): void {
+    this.categoryService.deleteCategory(categoryId).subscribe(
+      (response: string) => {
+        console.log('Server response:', response);
+        this.categories = this.categories.filter(category => category.id !== categoryId);
+      },
+      (error) => {
+        console.error('Error deleting product:', error);
+      }
+    );
+    }
 }
