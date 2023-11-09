@@ -8,6 +8,7 @@ import { NavbarComponent } from 'src/shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CategoryModule } from './category/category.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     ProductModule,
-    CategoryModule
+    CategoryModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
