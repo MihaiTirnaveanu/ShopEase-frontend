@@ -30,9 +30,8 @@ export class CategoryEditDialogComponent implements OnInit {
   }
 
   save(): void {
-    // Assuming 'id' is available in this.data
     const updatedCategory = new Category(
-      this.data.id, // Provide the existing id
+      this.data.id,
       this.formInstance.value.name,
       this.formInstance.value.description
     );

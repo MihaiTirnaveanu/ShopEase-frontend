@@ -10,7 +10,6 @@ import { ProductModule } from './product/product.module';
 import { CategoryModule } from './category/category.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
-
 @NgModule({
   declarations: [
     AppComponent,

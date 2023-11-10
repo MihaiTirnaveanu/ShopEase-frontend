@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './product';
 
@@ -21,5 +21,11 @@ export class ProductService {
   public deleteProduct(productId: number): Observable<string> {
     const url = `${this.productsUrl}/${productId}`;
     return this.http.delete<string>(url);
+  }
+
+  updateProduct(updatedProduct: Product): Observable<Product[]> {
+    return this.http.put<Product>(this.productsUrl, updatedProduct).pipe(
+      switchMap(() => this.getProducts()) // Fetch the updated list after successful update
+    );
   }
 }
