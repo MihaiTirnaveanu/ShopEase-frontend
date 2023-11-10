@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Category } from './category';
 
@@ -21,4 +21,11 @@ export class CategoryService {
     const url = `${this.categoriesUrl}/${categoryId}`;
     return this.http.delete<string>(url);
   }
+
+  updateCategory(updatedCategory: Category): Observable<Category[]> {
+    return this.http.put<Category>(this.categoriesUrl, updatedCategory).pipe(
+      switchMap(() => this.getCategories())
+    );
+  }
+
 }

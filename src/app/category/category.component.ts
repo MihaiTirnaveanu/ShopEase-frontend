@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from './category';
 import { CategoryService } from './category.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoryEditDialogComponent } from './category-edit-dialog/category-edit-dialog.component';
 
 @Component({
   selector: 'app-category',
@@ -10,7 +12,8 @@ import { CategoryService } from './category.service';
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService,
+    private dialog: MatDialog ) {}
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(data => {
@@ -19,10 +22,26 @@ export class CategoryComponent implements OnInit {
   }
 
   edit(category: Category) {
-    // Implement the edit functionality, you can open a dialog or navigate to another component for editing
-    console.log('Edit category:', category);
+    const dialogRef = this.dialog.open(CategoryEditDialogComponent, {
+      width: '400px',
+      data: category
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.categoryService.updateCategory(result).subscribe(
+          data => {
+            this.categories = data;
+          },
+          error => {
+            console.error('Error updating category', error);
+          }
+        );
+      }
+    });
   }
-
+  
+  
   delete(categoryId: number): void {
     this.categoryService.deleteCategory(categoryId).subscribe(
       (response: string) => {
