@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Category } from '../category';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-category-edit-dialog',
@@ -14,7 +15,8 @@ export class CategoryEditDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<CategoryEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Category
+    @Inject(MAT_DIALOG_DATA) public data: Category,
+    private categoryService: CategoryService
   ) {
     this.formInstance = new FormGroup({
       "id": new FormControl('', Validators.required), 
@@ -25,9 +27,7 @@ export class CategoryEditDialogComponent implements OnInit {
     this.formInstance.setValue(data);
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   save(): void {
     const updatedCategory = new Category(
@@ -36,6 +36,13 @@ export class CategoryEditDialogComponent implements OnInit {
       this.formInstance.value.description
     );
   
-    this.dialogRef.close(updatedCategory);
+    this.categoryService.updateCategory(updatedCategory).subscribe(
+      createdProduct => {
+        this.dialogRef.close(createdProduct);
+      },
+      error => {
+        console.error('Error updating product', error);
+      }
+    );
   }
 }

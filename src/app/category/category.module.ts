@@ -11,12 +11,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { CategoryEditDialogComponent } from './category-edit-dialog/category-edit-dialog.component';
+import { CategoryCreateDialogComponent } from './category-create-dialog/category-create-dialog.component';
 
 
 @NgModule({
   declarations: [
     CategoryComponent,
-    CategoryEditDialogComponent
+    CategoryEditDialogComponent,
+    CategoryCreateDialogComponent
   ],
   imports: [
     CommonModule,

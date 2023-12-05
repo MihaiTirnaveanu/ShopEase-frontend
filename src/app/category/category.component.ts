@@ -29,7 +29,7 @@ export class CategoryComponent implements OnInit {
   
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.categoryService.updateCategory(result).subscribe(
+        this.categoryService.getCategories().subscribe(
           data => {
             this.categories = data;
           },

@@ -22,10 +22,8 @@ export class CategoryService {
     return this.http.delete<string>(url);
   }
 
-  updateCategory(updatedCategory: Category): Observable<Category[]> {
-    return this.http.put<Category>(this.categoriesUrl, updatedCategory).pipe(
-      switchMap(() => this.getCategories())
-    );
+  updateCategory(updatedCategory: Category): Observable<Category> {
+    return this.http.put<Category>(this.categoriesUrl, updatedCategory);
   }
 
 }

@@ -23,6 +23,7 @@ export class ProductEditDialogComponent implements OnInit {
     private categoryService: CategoryService
   ) {
     this.formInstance = new FormGroup({
+      "id": new FormControl('', Validators.required),
       "name": new FormControl('', Validators.required),
       "specifications": new FormControl('', Validators.required),
       "stock": new FormControl('', Validators.required),
@@ -31,18 +32,10 @@ export class ProductEditDialogComponent implements OnInit {
       "categoryId": new FormControl('', Validators.required)
     });
 
-    this.formInstance.setValue({
-      "name": data.name,
-      "specifications": data.specifications,
-      "stock": data.stock,
-      "provider": data.provider,
-      "description": data.description,
-      "categoryId": data.categoryId,
-    });
+    this.formInstance.setValue(data);
   }
 
   ngOnInit(): void {
-    // Fetch categories when the component initializes
     this.categoryService.getCategories().subscribe(
       categories => {
         this.categories = categories;
@@ -64,8 +57,6 @@ export class ProductEditDialogComponent implements OnInit {
       this.formInstance.value.categoryId
     );
 
-
-    this.dialogRef.close(updatedProduct);
     this.productService.updateProduct(updatedProduct).subscribe(
       createdProduct => {
         this.dialogRef.close(createdProduct);
