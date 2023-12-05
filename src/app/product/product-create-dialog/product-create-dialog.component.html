@@ -1,5 +1,5 @@
-<!-- product-edit-dialog.component.html -->
-<h1 mat-dialog-title>Edit Product</h1>
+<!-- product-create-dialog.component.html -->
+<h1 mat-dialog-title>Create Product</h1>
 
 <div mat-dialog-content>
   <form [formGroup]="formInstance">
@@ -10,7 +10,7 @@
         <mat-error *ngIf="formInstance.controls['name'].hasError('required')">Field required</mat-error>
       </mat-form-field>
     </div>
- 
+
     <div class="mt-5">
       <mat-form-field class="fullWidth" appearance="outline">
         <mat-label>Specifications</mat-label>
@@ -43,6 +43,7 @@
       </mat-form-field>
     </div>
 
+    <!-- Add the dropdown for category selection -->
     <div class="mt-5">
       <mat-form-field class="fullWidth" appearance="outline">
         <mat-label>Category</mat-label>
@@ -54,6 +55,7 @@
         <mat-error *ngIf="formInstance.controls['categoryId'].hasError('required')">Field required</mat-error>
       </mat-form-field>
     </div>
+
   </form>
 </div>
 

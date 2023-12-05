@@ -11,7 +11,7 @@ export class Product {
         id: number,
         name: string,
         specifications: string,
-        stock: 30,
+        stock: number,
         provider: string,
         description: string,
         categoryId: number,

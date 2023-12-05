@@ -11,11 +11,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { ProductCreateDialogComponent } from './product-create-dialog/product-create-dialog.component';
 
 @NgModule({
   declarations: [
     ProductComponent,
-    ProductEditDialogComponent
+    ProductEditDialogComponent,
+    ProductCreateDialogComponent
   ],
   imports: [
     CommonModule,

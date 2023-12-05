@@ -1,23 +1,24 @@
+// product-create-dialog.component.ts
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
 import { Category } from 'src/app/category/category';
+import { ProductService } from '../product.service';
 import { CategoryService } from 'src/app/category/category.service';
+import { Product } from '../product';
 
 @Component({
-  selector: 'app-product-edit-dialog',
-  templateUrl: './product-edit-dialog.component.html',
-  styleUrls: ['./product-edit-dialog.component.css']
+  selector: 'app-product-create-dialog',
+  templateUrl: './product-create-dialog.component.html',
+  styleUrls: ['./product-create-dialog.component.css']
 })
 
-export class ProductEditDialogComponent implements OnInit {
+export class ProductCreateDialogComponent implements OnInit {
   formInstance: FormGroup;
-  categories: Category[] = [];
+  categories: Category[] = []; // Add this property to store categories
 
   constructor(
-    public dialogRef: MatDialogRef<ProductEditDialogComponent>,
+    public dialogRef: MatDialogRef<ProductCreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Product,
     private productService: ProductService,
     private categoryService: CategoryService
@@ -28,16 +29,7 @@ export class ProductEditDialogComponent implements OnInit {
       "stock": new FormControl('', Validators.required),
       "provider": new FormControl('', Validators.required),
       "description": new FormControl('', Validators.required),
-      "categoryId": new FormControl('', Validators.required)
-    });
-
-    this.formInstance.setValue({
-      "name": data.name,
-      "specifications": data.specifications,
-      "stock": data.stock,
-      "provider": data.provider,
-      "description": data.description,
-      "categoryId": data.categoryId,
+      "categoryId": new FormControl('', Validators.required), // For category dropdown
     });
   }
 
@@ -54,24 +46,23 @@ export class ProductEditDialogComponent implements OnInit {
   }
 
   save(): void {
-    const updatedProduct = new Product(
-      this.data.id,
+    const newProduct = new Product(
+      NaN,
       this.formInstance.value.name,
       this.formInstance.value.specifications,
       this.formInstance.value.stock,
       this.formInstance.value.provider,
       this.formInstance.value.description,
       this.formInstance.value.categoryId
-    );
+      );
 
 
-    this.dialogRef.close(updatedProduct);
-    this.productService.updateProduct(updatedProduct).subscribe(
+    this.productService.createProduct(newProduct).subscribe(
       createdProduct => {
         this.dialogRef.close(createdProduct);
       },
       error => {
-        console.error('Error updating product', error);
+        console.error('Error creating product', error);
       }
     );
   }

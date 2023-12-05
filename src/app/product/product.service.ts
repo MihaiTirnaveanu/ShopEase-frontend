@@ -23,9 +23,11 @@ export class ProductService {
     return this.http.delete<string>(url);
   }
 
-  updateProduct(updatedProduct: Product): Observable<Product[]> {
-    return this.http.put<Product>(this.productsUrl, updatedProduct).pipe(
-      switchMap(() => this.getProducts()) // Fetch the updated list after successful update
-    );
+  updateProduct(updatedProduct: Product): Observable<Product> {
+    return this.http.put<Product>(this.productsUrl, updatedProduct);
+  }
+
+  public createProduct(newProduct: any): Observable<Product> {
+    return this.http.post<Product>(this.productsUrl, newProduct);
   }
 }
