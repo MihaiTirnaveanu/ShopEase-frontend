@@ -3,6 +3,7 @@ import { Category } from './category';
 import { CategoryService } from './category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryEditDialogComponent } from './category-edit-dialog/category-edit-dialog.component';
+import { CategoryCreateDialogComponent } from './category-create-dialog/category-create-dialog.component';
 
 @Component({
   selector: 'app-category',
@@ -52,5 +53,22 @@ export class CategoryComponent implements OnInit {
         console.error('Error deleting product:', error);
       }
     );
+    }
+
+    create() {
+      const dialogRef = this.dialog.open(CategoryCreateDialogComponent, {
+        width: '400px',
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.categoryService.getCategories().subscribe(
+            categories => {
+              this.categories = categories;
+            }
+          )
+          console.log('Category created successfully', result);
+        }
+      });
     }
 }

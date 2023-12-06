@@ -23,7 +23,7 @@ export class ProductService {
     return this.http.delete<string>(url);
   }
 
-  updateProduct(updatedProduct: Product): Observable<Product> {
+  public updateProduct(updatedProduct: Product): Observable<Product> {
     return this.http.put<Product>(this.productsUrl, updatedProduct);
   }
 
