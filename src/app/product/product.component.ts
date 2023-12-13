@@ -4,6 +4,7 @@ import { ProductService } from './product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductEditDialogComponent } from './product-edit-dialog/product-edit-dialog.component';
 import { ProductCreateDialogComponent } from './product-create-dialog/product-create-dialog.component';
+import { AuthService } from '../authentication/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -12,12 +13,15 @@ import { ProductCreateDialogComponent } from './product-create-dialog/product-cr
 })
 export class ProductComponent implements OnInit{
   products: Product[] = [];
+  currentUser: any;
 
-  constructor(private productService: ProductService, private dialog: MatDialog ) {
-
-  }
+  constructor(
+    private productService: ProductService, 
+    private dialog: MatDialog,
+    private authService: AuthService ) {}
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getCurrentUser();
     this.productService.getProducts().subscribe(data => {
       this.products = data;
     })

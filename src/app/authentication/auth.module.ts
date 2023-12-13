@@ -12,8 +12,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { SharedModule } from '../shared/shared.module';
-
 
 @NgModule({
   declarations: [
@@ -34,8 +32,7 @@ import { SharedModule } from '../shared/shared.module';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatDialogModule,
-    SharedModule
+    MatDialogModule
   ],
   providers: [
     AuthService

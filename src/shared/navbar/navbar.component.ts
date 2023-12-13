@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/authentication/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   emptyAvatarPic = "assets/images/empty-avatar1.webp";
+  currentUser: any;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser();
+  }
 }

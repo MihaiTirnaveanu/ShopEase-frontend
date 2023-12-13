@@ -1,3 +1,18 @@
 button {
     margin: 16px 8px;
   }
+
+  :host {
+    background-image: url('./../../assets/images/HomeBackgroundImg.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mat-elevation-z8 {
+    margin: 2% auto;
+    width: 80%; 
+  }

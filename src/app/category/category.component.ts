@@ -4,6 +4,7 @@ import { CategoryService } from './category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryEditDialogComponent } from './category-edit-dialog/category-edit-dialog.component';
 import { CategoryCreateDialogComponent } from './category-create-dialog/category-create-dialog.component';
+import { AuthService } from '../authentication/auth.service';
 
 @Component({
   selector: 'app-category',
@@ -12,11 +13,16 @@ import { CategoryCreateDialogComponent } from './category-create-dialog/category
 })
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
+  currentUser: any;
 
-  constructor(private categoryService: CategoryService,
-    private dialog: MatDialog ) {}
+  constructor(
+    private categoryService: CategoryService,
+    private dialog: MatDialog,
+    private authService: AuthService
+    ) {}
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getCurrentUser();
     this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
     });

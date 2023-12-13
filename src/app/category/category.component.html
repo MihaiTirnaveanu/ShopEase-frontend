@@ -1,4 +1,4 @@
-<button mat-raised-button (click)="create()"> Add category</button>
+<button mat-raised-button *ngIf="currentUser.role === 'ROLE_ADMIN'" (click)="create()"> Add category</button>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="categories" class="mat-elevation-z8">
       <!-- Displaying columns -->
@@ -21,10 +21,10 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let category">
-          <button mat-icon-button color="primary" (click)="edit(category)">
+          <button mat-icon-button color="primary" *ngIf="currentUser.role === 'ROLE_ADMIN'" (click)="edit(category)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="delete(category.id)">
+          <button mat-icon-button color="warn" *ngIf="currentUser.role === 'ROLE_ADMIN'" (click)="delete(category.id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
