@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 const AUTH_API = "http://localhost:8080/api/v1/auth/";
-const USER_API = "http://localhost:8080/api/user/";
+const USER_API = "http://localhost:8080/api/user/role";
 const AUTH_TOKEN_KEY = 'auth-token';
 
 @Injectable({
@@ -27,21 +27,18 @@ export class AuthService {
   }
 
   login(loginRequest: AuthenticationRequest) {
-    return this.http.post<AuthenticationResponse>(AUTH_API + "login", loginRequest)
+    return this.http.post<AuthenticationResponse>(AUTH_API + "authenticate", loginRequest)
     .subscribe((response) => {
       this.localService.saveData(AUTH_TOKEN_KEY, response.accessToken);
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(response.accessToken);
-      this.fetchUserRole().subscribe(
-        (roleResponse: String) => {
           this.currentUser = {
             username: decodedToken.sub,
-            role: roleResponse
+            role: decodedToken.role
           }
           this.router.navigate(["categories"]);
         }
       )
-    });
   }
 
   getToken() {
@@ -54,14 +51,15 @@ export class AuthService {
   }
   
   logout() {
-    let removeToken = localStorage.removeItem('access_token');
-    if (removeToken == null) {
+    return this.http.get<String>(AUTH_API + "logout")
+    .subscribe(response => {
+      let removeToken = localStorage.removeItem('access_token');
       this.router.navigate(['login']);
-    }
+    });
   }
 
-  fetchUserRole() : Observable<any>{
-    return this.http.get<any>(USER_API + "role");
+  fetchUserRole() : Observable<String>{
+    return this.http.get<String>(USER_API);
   }
 
   getCurrentUser() {

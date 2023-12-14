@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/authentication/auth.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/authentication/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   emptyAvatarPic = "assets/images/empty-avatar1.webp";
   currentUser: any;
 
@@ -14,5 +14,9 @@ export class NavbarComponent {
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

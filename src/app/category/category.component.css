@@ -7,7 +7,7 @@
     margin: 16px 8px;
   }
 
-  :host {
+  /*:host {
     background-image: url('./../../assets/images/HomeBackgroundImg.jpg');
     background-size: cover;
     background-position: center;
@@ -15,4 +15,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  }*/
+
+  /*.custom-mat-table {
+    width: 80%;
+    height:  100%;
+    margin: auto;
+    margin-top: -30%;
+  }*/

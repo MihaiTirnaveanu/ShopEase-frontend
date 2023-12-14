@@ -1,18 +1,25 @@
+.mat-elevation-z8 {
+  margin: 2% auto;
+  width: 80%; 
+}
+
 button {
-    margin: 16px 8px;
-  }
+  margin: 16px 8px;
+}
 
-  :host {
-    background-image: url('./../../assets/images/HomeBackgroundImg.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+/*:host {
+  background-image: url('./../../assets/images/HomeBackgroundImg.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}*/
 
-  .mat-elevation-z8 {
-    margin: 2% auto;
-    width: 80%; 
-  }
+/*.custom-mat-table {
+  width: 80%;
+  height:  100%;
+  margin: auto;
+  margin-top: -30%;
+}*/

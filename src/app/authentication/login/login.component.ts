@@ -31,8 +31,11 @@ export class LoginComponent{
   }
 
   navigateToRegister() {
-    this.router.navigate(['register']).catch(error => console.error(error));
+  try {
+    this.router.navigate(['register']);
+  } catch (error) {
+    console.error('Navigation failed', error);
   }
-  
+}
 }
 
