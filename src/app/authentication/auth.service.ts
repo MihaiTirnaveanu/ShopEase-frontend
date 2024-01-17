@@ -63,6 +63,19 @@ export class AuthService {
   }
 
   getCurrentUser() {
+    if (!this.currentUser || Object.keys(this.currentUser).length === 0) {
+      // Fetch from local storage if not available in-memory
+      const authToken = this.localService.getData(AUTH_TOKEN_KEY);
+      if (authToken) {
+        const helper = new JwtHelperService();
+        const decodedToken = helper.decodeToken(authToken);
+        this.currentUser = {
+          username: decodedToken.sub,
+          role: decodedToken.role
+        };
+      }
+    }
+  
     return this.currentUser;
   }
 }

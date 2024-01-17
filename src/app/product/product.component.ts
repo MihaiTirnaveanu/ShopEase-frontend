@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProductEditDialogComponent } from './product-edit-dialog/product-edit-dialog.component';
 import { ProductCreateDialogComponent } from './product-create-dialog/product-create-dialog.component';
 import { AuthService } from '../authentication/auth.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-product',
@@ -18,14 +20,30 @@ export class ProductComponent implements OnInit{
   constructor(
     private productService: ProductService, 
     private dialog: MatDialog,
-    private authService: AuthService ) {}
+    private authService: AuthService,
+    private route: ActivatedRoute  ) {}
 
-  ngOnInit(): void {
-    this.currentUser = this.authService.getCurrentUser();
-    this.productService.getProducts().subscribe(data => {
-      this.products = data;
-    })
-  }
+    ngOnInit(): void {
+      this.currentUser = this.authService.getCurrentUser();
+      this.route.queryParams.subscribe(params => {
+        const categoryId = params['categoryId'];
+        if (categoryId) {
+          this.productService.getProductsByCategoryId(categoryId).subscribe(
+            products => {
+              this.products = products;
+            },
+            error => {
+              console.error('Error loading products for category:', error);
+            }
+          );
+        } else {
+          this.productService.getProducts().subscribe(data => {
+            this.products = data;
+          });
+        }
+      });
+    }
+    
 
   edit(product: Product) {
     const dialogRef = this.dialog.open(ProductEditDialogComponent, {
@@ -72,6 +90,10 @@ export class ProductComponent implements OnInit{
         console.log('Product created successfully', result);
       }
     });
+  }
+
+  redirectToShoppingCart(){
+    
   }
 
 }

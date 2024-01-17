@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CategoryEditDialogComponent } from './category-edit-dialog/category-edit-dialog.component';
 import { CategoryCreateDialogComponent } from './category-create-dialog/category-create-dialog.component';
 import { AuthService } from '../authentication/auth.service';
+import { ProductService } from '../product/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -18,7 +20,9 @@ export class CategoryComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private productService: ProductService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -46,6 +50,10 @@ export class CategoryComponent implements OnInit {
         );
       }
     });
+  }
+
+  loadProductsByCategory(categoryId: number): void {
+    this.router.navigate(['/products'], { queryParams: { categoryId: categoryId } });
   }
   
   

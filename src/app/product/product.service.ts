@@ -30,4 +30,9 @@ export class ProductService {
   public createProduct(newProduct: any): Observable<Product> {
     return this.http.post<Product>(this.productsUrl, newProduct);
   }
+
+  public getProductsByCategoryId(categoryId: number): Observable<Product[]> {
+    const url = `${this.productsUrl}/category/${categoryId}`;
+    return this.http.get<Product[]>(url);
+  }
 }

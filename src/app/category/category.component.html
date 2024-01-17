@@ -27,6 +27,9 @@
           <button mat-icon-button color="warn" *ngIf="currentUser.role === 'ADMIN'" (click)="delete(category.id)">
             <mat-icon>delete</mat-icon>
           </button>
+          <button mat-icon-button color="primary" (click)="loadProductsByCategory(category.id)">
+            <mat-icon>view_list</mat-icon>
+          </button>          
         </td>
       </ng-container>
   
