@@ -1,3 +1,4 @@
+// product-edit-dialog.component.ts
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -29,7 +30,8 @@ export class ProductEditDialogComponent implements OnInit {
       "stock": new FormControl('', Validators.required),
       "provider": new FormControl('', Validators.required),
       "description": new FormControl('', Validators.required),
-      "categoryId": new FormControl('', Validators.required)
+      "categoryId": new FormControl('', Validators.required),
+      "cost": new FormControl('', Validators.required) // Add cost field
     });
 
     this.formInstance.setValue(data);
@@ -54,7 +56,8 @@ export class ProductEditDialogComponent implements OnInit {
       this.formInstance.value.stock,
       this.formInstance.value.provider,
       this.formInstance.value.description,
-      this.formInstance.value.categoryId
+      this.formInstance.value.categoryId,
+      this.formInstance.value.cost
     );
 
     this.productService.updateProduct(updatedProduct).subscribe(

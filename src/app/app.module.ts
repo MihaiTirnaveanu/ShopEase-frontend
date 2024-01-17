@@ -19,11 +19,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
  import { MatMenuModule} from '@angular/material/menu';
+import { OrderComponent } from './orders/order/order.component';
+import { CartItemComponent } from './cart-items/cart-item/cart-item.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
+        NavbarComponent,
+        OrderComponent,
+        CartItemComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

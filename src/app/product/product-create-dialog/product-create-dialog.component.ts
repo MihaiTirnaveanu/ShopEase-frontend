@@ -29,12 +29,12 @@ export class ProductCreateDialogComponent implements OnInit {
       "stock": new FormControl('', Validators.required),
       "provider": new FormControl('', Validators.required),
       "description": new FormControl('', Validators.required),
-      "categoryId": new FormControl('', Validators.required), // For category dropdown
+      "cost": new FormControl('', Validators.required),
+      "categoryId": new FormControl('', Validators.required),
     });
   }
 
   ngOnInit(): void {
-    // Fetch categories when the component initializes
     this.categoryService.getCategories().subscribe(
       categories => {
         this.categories = categories;
@@ -53,9 +53,9 @@ export class ProductCreateDialogComponent implements OnInit {
       this.formInstance.value.stock,
       this.formInstance.value.provider,
       this.formInstance.value.description,
+      this.formInstance.value.cost,
       this.formInstance.value.categoryId
-      );
-
+    );
 
     this.productService.createProduct(newProduct).subscribe(
       createdProduct => {

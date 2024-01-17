@@ -54,6 +54,14 @@
         <mat-error *ngIf="formInstance.controls['categoryId'].hasError('required')">Field required</mat-error>
       </mat-form-field>
     </div>
+
+    <div class="mt-5">
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Cost</mat-label>
+        <input matInput type="number" name="cost" formControlName="cost">
+        <mat-error *ngIf="formInstance.controls['cost'].hasError('required')">Field required</mat-error>
+      </mat-form-field>
+    </div>
   </form>
 </div>
 
