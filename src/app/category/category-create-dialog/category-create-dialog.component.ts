@@ -29,7 +29,8 @@ export class CategoryCreateDialogComponent implements OnInit {
     const newCategory = new Category(
       NaN,
       this.formInstance.value.name,
-      this.formInstance.value.description
+      this.formInstance.value.description,
+      ""
     );
 
     this.categoryService.createCategory(newCategory).subscribe(

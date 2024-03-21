@@ -4,7 +4,7 @@
   <ng-container matColumnDef="image">
     <th mat-header-cell *matHeaderCellDef>Image</th>
     <td mat-cell *matCellDef="let product">
-      <img class="product-image" src="https://picsum.photos/id/237/500/500" alt="{{ product.name }}">
+      <img class="product-image" [src]="product.image" alt="{{ product.name }}">
     </td>
   </ng-container>
 

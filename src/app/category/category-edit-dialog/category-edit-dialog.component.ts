@@ -33,7 +33,8 @@ export class CategoryEditDialogComponent implements OnInit {
     const updatedCategory = new Category(
       this.data.id,
       this.formInstance.value.name,
-      this.formInstance.value.description
+      this.formInstance.value.description,
+      ""
     );
   
     this.categoryService.updateCategory(updatedCategory).subscribe(

@@ -57,7 +57,8 @@ export class ProductEditDialogComponent implements OnInit {
       this.formInstance.value.provider,
       this.formInstance.value.description,
       this.formInstance.value.categoryId,
-      this.formInstance.value.cost
+      this.formInstance.value.cost,
+      ""
     );
 
     this.productService.updateProduct(updatedProduct).subscribe(

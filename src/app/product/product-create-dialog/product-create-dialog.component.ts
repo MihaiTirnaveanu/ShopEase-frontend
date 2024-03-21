@@ -54,7 +54,8 @@ export class ProductCreateDialogComponent implements OnInit {
       this.formInstance.value.provider,
       this.formInstance.value.description,
       this.formInstance.value.cost,
-      this.formInstance.value.categoryId
+      this.formInstance.value.categoryId,
+      ""
     );
 
     this.productService.createProduct(newProduct).subscribe(
