@@ -1,41 +1,42 @@
-<button mat-raised-button *ngIf="currentUser.role === 'ADMIN'" (click)="create()"> Add category</button>
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="categories" class="mat-elevation-z8 custom-mat-table">
-      <!-- Displaying columns -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let category">{{ category.id }}</td>
-      </ng-container>
-  
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let category">{{ category.name }}</td>
-      </ng-container>
-  
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef>Description</th>
-        <td mat-cell *matCellDef="let category">{{ category.description }}</td>
-      </ng-container>
-  
-      <!-- Buttons for actions -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let category">
-          <button mat-icon-button color="primary" *ngIf="currentUser.role === 'ADMIN'" (click)="edit(category)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" *ngIf="currentUser.role === 'ADMIN'" (click)="delete(category.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button mat-icon-button color="primary" (click)="loadProductsByCategory(category.id)">
-            <mat-icon>view_list</mat-icon>
-          </button>          
-        </td>
-      </ng-container>
-  
-      <!-- Table rows -->
-      <tr mat-header-row *matHeaderRowDef="['id', 'name', 'description', 'actions']"></tr>
-      <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'description', 'actions']"></tr>
-    </table>
-  </div>
-  
+  <table mat-table [dataSource]="categories" class="custom-mat-table">
+    <!-- Displaying columns -->
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <td mat-cell *matCellDef="let category">
+        <img class="category-image" src="assets/category-image.jpg" alt="{{ category.name }}">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let category">{{ category.description }}</td>
+    </ng-container>
+
+    <!-- Buttons for actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let category">
+        <button mat-icon-button color="primary" *ngIf="currentUser.role === 'ADMIN'" (click)="edit(category)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" *ngIf="currentUser.role === 'ADMIN'" (click)="delete(category.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" (click)="loadProductsByCategory(category.id)">
+          <mat-icon>view_list</mat-icon>
+        </button>          
+      </td>
+    </ng-container>
+
+    <!-- Table rows -->
+    <tr mat-header-row *matHeaderRowDef="['image', 'name', 'description', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['image', 'name', 'description', 'actions']"></tr>
+  </table>
+</div>

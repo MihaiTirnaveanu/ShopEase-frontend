@@ -46,11 +46,11 @@
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let product">
       <mat-form-field *ngIf="currentUser.role === 'USER'">
-        <input matInput type="number" placeholder="Quantity" min="1">
-      </mat-form-field>
-      <button mat-icon-button color="primary" *ngIf="currentUser.role === 'USER'" (click)="addToCart(product)">
-        <mat-icon>add_shopping_cart</mat-icon>
-      </button>
+  <input matInput type="number" placeholder="Quantity" min="1">
+</mat-form-field>
+<button mat-icon-button color="primary" *ngIf="currentUser.role === 'USER'" (click)="addToCart(product)">
+  <mat-icon>add_shopping_cart</mat-icon>
+</button>
       <button mat-icon-button color="primary" *ngIf="currentUser.role === 'ADMIN'" (click)="edit(product)">
         <mat-icon>edit</mat-icon>
       </button>

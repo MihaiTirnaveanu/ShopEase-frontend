@@ -8,6 +8,7 @@ import { AuthService } from '../authentication/auth.service';
 import { ProductService } from '../product/product.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',

@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
  import { MatMenuModule} from '@angular/material/menu';
 import { OrderComponent } from './orders/order/order.component';
 import { CartItemComponent } from './cart-items/cart-item/cart-item.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { CartItemComponent } from './cart-items/cart-item/cart-item.component';
         MatCardModule,
         MatInputModule,
         MatTableModule,
-        MatMenuModule
+        MatMenuModule,
+        MatGridListModule
     ]
 })
 export class AppModule { }
