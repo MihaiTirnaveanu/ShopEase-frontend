@@ -1,5 +1,6 @@
 <button mat-raised-button *ngIf="currentUser.role === 'ADMIN'" (click)="create()"> Add product</button>
-<table mat-table [dataSource]="products" class="mat-elevation-z8 custom-mat-table">
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="products" class="custom-mat-table">
   <!-- Displaying columns -->
   <ng-container matColumnDef="image">
     <th mat-header-cell *matHeaderCellDef>Image</th>
@@ -66,3 +67,4 @@
   <tr mat-header-row *matHeaderRowDef="['image', 'name', 'specifications', 'stock', 'provider', 'description', 'cost', 'category', 'actions']"></tr>
   <tr mat-row *matRowDef="let row; columns: ['image', 'name', 'specifications', 'stock', 'provider', 'description', 'cost', 'category', 'actions']"></tr>
 </table>
+</div>

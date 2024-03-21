@@ -1,4 +1,4 @@
-<button mat-raised-button color="warn" *ngIf="currentUser.role === 'USER'" (click)="deleteAll()">Empty Cart</button>
+<button mat-raised-button id="warm" color="warn" *ngIf="currentUser.role === 'USER'" (click)="deleteAll()">Empty Cart</button>
 <button mat-raised-button color="primary" *ngIf="currentUser.role === 'USER'" (click)="createOrder()">Checkout</button>
 
 <div class="total-cost-box">
@@ -6,7 +6,8 @@
   <span>{{ calculateTotalCost() }}</span>
 </div>
 
-<table mat-table [dataSource]="cartItems" class="mat-elevation-z8 custom-mat-table">
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="cartItems" class="custom-mat-table">
     <!-- Displaying columns -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -42,4 +43,5 @@
     <tr mat-header-row *matHeaderRowDef="['id', 'quantity', 'productId', 'calculatedCost', 'actions']"></tr>
     <tr mat-row *matRowDef="let row; columns: ['id', 'quantity', 'productId', 'calculatedCost', 'actions']"></tr>
   </table>
+</div>
   

@@ -1,6 +1,8 @@
 .mat-elevation-z8 {
   margin: 2% auto;
-  width: 80%; 
+  width: 70%;
+  border: 1px solid black;
+  border-radius: 25px;
 }
 
 button {
@@ -29,4 +31,14 @@ button {
   height: 150px;
   margin: 0 auto;
   padding: 0; 
+}
+
+mat-form-field {
+  width: 25%;
+}
+
+.mat-column-actions {
+  padding-left: 20px;
+  width: 10%;
+  /* Remove width and max-width properties */
 }
