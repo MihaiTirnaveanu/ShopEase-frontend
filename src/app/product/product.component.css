@@ -27,6 +27,6 @@ button {
 .product-image {
   width: 150px;
   height: 150px;
-  margin: 0 auto; /* Center the image horizontally */
-  padding: 0; /* Remove padding */
+  margin: 0 auto;
+  padding: 0; 
 }

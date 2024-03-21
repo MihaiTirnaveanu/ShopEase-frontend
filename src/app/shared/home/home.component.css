@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Add this to establish a stacking context */
+  position: relative;
 }
 
 @media (max-width: 768px) {
@@ -16,7 +16,6 @@
 }
 
 .form {
-  z-index: 1; /* Ensure the form is rendered above the background image */
+  z-index: 1;
 }
 
-/* Your other styles for the form */
