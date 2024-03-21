@@ -7,6 +7,9 @@ import { ProductCreateDialogComponent } from './product-create-dialog/product-cr
 import { AuthService } from '../authentication/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartItemService } from '../cart-items/cart-items.service';
+import { Category } from '../category/category';
+import { CategoryService } from '../category/category.service';
+
 
 @Component({
   selector: 'app-product',
@@ -16,9 +19,12 @@ import { CartItemService } from '../cart-items/cart-items.service';
 export class ProductComponent implements OnInit {
   products: Product[] = [];
   currentUser: any;
+  categories: Category[] = [];
+  quantity: number = 1; // Default value is 1
 
   constructor(
     private productService: ProductService,
+    private categoryService: CategoryService,
     private dialog: MatDialog,
     private authService: AuthService,
     private route: ActivatedRoute,
@@ -45,6 +51,15 @@ export class ProductComponent implements OnInit {
         });
       }
     });
+
+    this.categoryService.getCategories().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+
+  getCategoryName(categoryId: number): string {
+    const category = this.categories.find(cat => cat.id === categoryId);
+    return category ? category.name : '';
   }
 
   edit(product: Product) {
@@ -96,7 +111,7 @@ export class ProductComponent implements OnInit {
 
   addToCart(product: Product): void {
         const newCartItem = {
-      quantity: 1,
+      quantity: this.quantity,
       productId: product.id
     };
 

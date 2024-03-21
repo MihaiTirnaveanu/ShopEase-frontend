@@ -23,3 +23,10 @@ button {
   margin: auto;
   margin-top: -30%;
 }*/
+
+.product-image {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto; /* Center the image horizontally */
+  padding: 0; /* Remove padding */
+}

@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 import { ProductCreateDialogComponent } from './product-create-dialog/product-create-dialog.component';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProductCreateDialogComponent } from './product-create-dialog/product-cr
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [
     ProductService

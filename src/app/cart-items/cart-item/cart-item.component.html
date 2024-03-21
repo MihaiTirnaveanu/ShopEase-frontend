@@ -1,5 +1,5 @@
-<button mat-raised-button color="warn" *ngIf="currentUser.role === 'USER'" (click)="deleteAll()">Delete All</button>
-<button mat-raised-button color="primary" *ngIf="currentUser.role === 'USER'" (click)="createOrder()">Create Order</button>
+<button mat-raised-button color="warn" *ngIf="currentUser.role === 'USER'" (click)="deleteAll()">Empty Cart</button>
+<button mat-raised-button color="primary" *ngIf="currentUser.role === 'USER'" (click)="createOrder()">Checkout</button>
 
 <div class="total-cost-box">
   <span>Total Cost:</span>
@@ -24,7 +24,7 @@
     </ng-container>
   
     <ng-container matColumnDef="calculatedCost">
-      <th mat-header-cell *matHeaderCellDef>Calculated Cost</th>
+      <th mat-header-cell *matHeaderCellDef>Calculated Cost ($)</th>
       <td mat-cell *matCellDef="let cartItem">{{ cartItem.quantity * getProductById(cartItem.productId)?.cost }}</td>
     </ng-container>
   
