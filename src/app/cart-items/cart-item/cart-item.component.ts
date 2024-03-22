@@ -122,7 +122,7 @@ export class CartItemComponent implements OnInit {
         console.log('Order created!');
         
         // Navigate to the orders route
-        this.router.navigateByUrl('/orders');
+        window.location.reload();
       },
       error => {
         console.error('Error creating order', error);
