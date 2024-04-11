@@ -23,6 +23,8 @@ export class ProductComponent implements OnInit {
   quantity: number = 1; // Default value is 1
   searchQuery: string = "";
   suggestions: string[] = [];
+  isSearchFocused: boolean = false;
+
 
   constructor(
     private productService: ProductService,
@@ -171,5 +173,13 @@ export class ProductComponent implements OnInit {
         console.error('Error creating cart item', error);
       }
     );
+  }
+
+  showSuggestions() {
+    this.isSearchFocused = true;
+  }
+
+  hideSuggestions() {
+    this.isSearchFocused = false;
   }
 }
