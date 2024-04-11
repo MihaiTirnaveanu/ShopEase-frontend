@@ -4,7 +4,8 @@
     <div class="position-relative" style="flex: 1;">
       <div class="input-group rounded" style="height: 60%;">
         <!-- Use (focus) and (blur) events to toggle suggestion visibility -->
-        <input type="text" class="form-control rounded" style="height: 100%;" placeholder="Search products..." [(ngModel)]="searchQuery" (input)="fetchSuggestions()" (focus)="showSuggestions()" (blur)="hideSuggestions()">
+        <input type="text" class="form-control rounded" style="height: 100%;" placeholder="Search products..." [(ngModel)]="searchQuery" (input)="fetchSuggestions()" (focus)="showSuggestions()" (blur)="hideSuggestions($event)">
+
       </div>
       <!-- Suggestions dropdown -->
       <!-- Show suggestions only when the input has focus -->

@@ -179,7 +179,13 @@ export class ProductComponent implements OnInit {
     this.isSearchFocused = true;
   }
 
-  hideSuggestions() {
-    this.isSearchFocused = false;
+  hideSuggestions(event: FocusEvent): void {
+    setTimeout(() => {
+      if (!event.relatedTarget || !(event.relatedTarget as HTMLElement).classList.contains('suggestion-item')) {
+        // Hide suggestions only if the related target is not a suggestion item
+        this.isSearchFocused = false;
+      }
+    }, 200); // Adjust the delay as needed (in milliseconds)
   }
+  
 }
