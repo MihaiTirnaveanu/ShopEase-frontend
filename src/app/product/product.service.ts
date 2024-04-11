@@ -35,4 +35,14 @@ export class ProductService {
     const url = `${this.productsUrl}/category/${categoryId}`;
     return this.http.get<Product[]>(url);
   }
+
+  public searchProducts(query: string): Observable<Product[]> {
+    const url = `${this.productsUrl}/search?query=${query}`;
+    return this.http.get<Product[]>(url);
+  }  
+
+  public getPredictiveSearchSuggestions(query: string): Observable<string[]> {
+    const url = `${this.productsUrl}/search/predictive?query=${query}`;
+    return this.http.get<string[]>(url);
+  }
 }

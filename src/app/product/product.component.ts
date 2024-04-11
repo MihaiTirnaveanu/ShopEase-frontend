@@ -21,6 +21,8 @@ export class ProductComponent implements OnInit {
   currentUser: any;
   categories: Category[] = [];
   quantity: number = 1; // Default value is 1
+  searchQuery: string = "";
+  suggestions: string[] = [];
 
   constructor(
     private productService: ProductService,
@@ -61,6 +63,51 @@ export class ProductComponent implements OnInit {
     const category = this.categories.find(cat => cat.id === categoryId);
     return category ? category.name : '';
   }
+  
+  search() {
+    if (this.searchQuery.trim() === '') {
+      // If the search query is empty, retrieve all products
+      this.productService.getProducts().subscribe(
+        products => {
+          this.products = products;
+        },
+        error => {
+          console.error('Error loading products:', error);
+        }
+      );
+    } else {
+      // Also, perform the search with the entered query
+      this.productService.searchProducts(this.searchQuery).subscribe(
+        products => {
+          this.products = products;
+        },
+        error => {
+          console.error('Error searching products:', error);
+        }
+      );
+    }
+  }
+  
+  selectSuggestion(suggestion: string): void {
+    this.searchQuery = suggestion;
+    this.suggestions = [];
+  }
+
+  fetchSuggestions() {
+    if (this.searchQuery.trim() !== '') {
+      this.productService.getPredictiveSearchSuggestions(this.searchQuery).subscribe(
+        suggestions => {
+          this.suggestions = suggestions;
+        },
+        error => {
+          console.error('Error fetching predictive search suggestions:', error);
+        }
+      );
+    } else {
+      this.suggestions = []; // Clear suggestions if search query is empty
+    }
+  }  
+
 
   edit(product: Product) {
     const dialogRef = this.dialog.open(ProductEditDialogComponent, {
