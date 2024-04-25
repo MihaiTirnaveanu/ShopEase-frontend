@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
   searchQuery: string = "";
   suggestions: string[] = [];
   isSearchFocused: boolean = false;
+  sortOrder: string = 'desc'; // Default sort order
 
 
   constructor(
@@ -65,6 +66,18 @@ export class ProductComponent implements OnInit {
     const category = this.categories.find(cat => cat.id === categoryId);
     return category ? category.name : '';
   }
+
+  // Function to handle sorting by ascending order
+  sortByAscending() {
+    this.sortOrder = 'asc';
+    this.search(); // Trigger search with updated sort order
+  }
+
+  // Function to handle sorting by descending order
+  sortByDescending() {
+    this.sortOrder = 'desc';
+    this.search(); // Trigger search with updated sort order
+  }
   
   search() {
     if (this.searchQuery.trim() === '') {
@@ -79,7 +92,7 @@ export class ProductComponent implements OnInit {
       );
     } else {
       // Also, perform the search with the entered query
-      this.productService.searchProducts(this.searchQuery).subscribe(
+      this.productService.searchProductsBySpecifications(this.searchQuery, this.sortOrder).subscribe(
         products => {
           this.products = products;
         },

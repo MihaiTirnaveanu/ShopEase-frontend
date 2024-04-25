@@ -45,4 +45,10 @@ export class ProductService {
     const url = `${this.productsUrl}/search/predictive?query=${query}`;
     return this.http.get<string[]>(url);
   }
+
+  public searchProductsBySpecifications(query: string, sortOrder: string = 'desc'): Observable<Product[]> {
+    const url = `${this.productsUrl}/search/specifications?query=${query}&sortOrder=${sortOrder}`;
+    return this.http.get<Product[]>(url);
+  }
+  
 }

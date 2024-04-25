@@ -1,14 +1,21 @@
 <button mat-raised-button *ngIf="currentUser.role === 'ADMIN'" (click)="create()"> Add product</button>
 <div class="row justify-content-center mb-3 mt-3">
   <div class="col-md-6 d-flex align-items-center">
-    <div class="position-relative" style="flex: 1;">
-      <div class="input-group rounded" style="height: 60%;">
-        <!-- Use (focus) and (blur) events to toggle suggestion visibility -->
-        <input type="text" class="form-control rounded" style="height: 100%;" placeholder="Search products..." [(ngModel)]="searchQuery" (input)="fetchSuggestions()" (focus)="showSuggestions()" (blur)="hideSuggestions($event)">
+    <!-- Ascending order button -->
+    <button mat-icon-button color="primary" (click)="sortByDescending()">
+      <mat-icon>arrow_upward</mat-icon>
+    </button>
+    <!-- Descending order button -->
+    <button mat-icon-button color="primary" (click)="sortByAscending()">
+      <mat-icon>arrow_downward</mat-icon>
+    </button>
 
+    <div class="position-relative" style="flex: 1;">
+      <!-- Search input -->
+      <div class="input-group rounded" style="height: 60%;">
+        <input type="text" class="form-control rounded" style="height: 100%;" placeholder="Search products..." [(ngModel)]="searchQuery" (input)="fetchSuggestions()" (focus)="showSuggestions()" (blur)="hideSuggestions($event)">
       </div>
       <!-- Suggestions dropdown -->
-      <!-- Show suggestions only when the input has focus -->
       <div class="w-100 mt-2 position-absolute" *ngIf="suggestions.length > 0 && isSearchFocused">
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let suggestion of suggestions" (click)="selectSuggestion(suggestion)">
